@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+$margins: (
+  1: 0.1rem,
+  2: 0.2rem,
+  3: 0.4rem,
+  4: 1rem,
+  5: 1.25rem
+);
+
+@each $key, $value in $margins {
+  .p-mx-#{$key} {
+    margin: 0 $value;
+  }
+}

@@ -1,0 +1,35 @@
+<div *ngIf="list.length > 0">
+  <h3>EuroJackpot <span *ngIf="list"> Results for {{date | date: 'fullDate' }}</span></h3>
+  <div class="badges">
+    <p-badge *ngFor="let item of list[0]?.numbers" [value]="item" size="large" styleClass="p-mx-1"></p-badge>
+    <p-avatar label="+" shape="circle" class="p-mx-4"></p-avatar>
+    <p-badge *ngFor="let item of list[0]?.euroNumbers" [value]="item" size="large" severity="warning"
+      styleClass="p-mx-1">
+    </p-badge>
+  </div>
+
+  <p-table [value]="winningOdds">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Tier</th>
+        <th pSortableColumn="winners">
+          <p-sortIcon field="winners"></p-sortIcon>Winners
+        </th>
+        <th>Ammount</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-odds let-i="rowIndex">
+      <tr>
+        <td>{{ROMAN_NUMBERS[i+1]}}</td>
+        <td *ngIf="odds.winners > 0">
+          {{odds.winners | winner:'x'}}
+        </td>
+        <td>
+          {{(odds.prize / 100) | currency}}
+        </td>
+        <td></td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+</div>
